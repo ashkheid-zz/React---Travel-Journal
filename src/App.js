@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Theme from './components/Theme';
+import Header from './components/Header';
+import Article from './components/Article';
+import Page from './components/Page';
+import Footer from './components/Footer';
 
-function App() {
+import getData from './data';
+
+import headerIcon from './icons/earth.png';
+
+
+export default function App() {
+  let i = 1;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Theme theme={['red', 'teal', 'indigo', 'amber']} />
+      <Header title="My Travel Journal" icon={headerIcon} />
+      <main className="main">
+        {getData().map(data => <Article key={++i} {...data} />)}
+        <Page count={3}/>
+      </main>
+      <Footer author="Ashkan"/>
+    </>
   );
 }
-
-export default App;
