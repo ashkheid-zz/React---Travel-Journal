@@ -1,17 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+//#region Creating root element inside the <body> tag
+//Creating <div> element
+const rootElement = document.createElement('div');
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//assigning #root id to it
+rootElement.setAttribute('id', 'root');
+rootElement.setAttribute('theme', 'red');
+rootElement.classList.add('flex');
+
+//appending to <body>
+document.body.append(rootElement);
+//#endregion
+
+ReactDOM.render(<App />, rootElement);
+
+document.querySelector('.theme-box').addEventListener('click', (e) => {
+  switch (e.target.id) {
+    case 'th-red':
+      rootElement.setAttribute('theme', 'red');
+      break;
+    case 'th-teal':
+      rootElement.setAttribute('theme', 'teal');
+      break;
+    case 'th-indigo':
+      rootElement.setAttribute('theme', 'indigo');
+      break;
+    case 'th-amber':
+      rootElement.setAttribute('theme', 'amber');
+      break;
+    default:
+      throw new Error('Something went wrong!');
+  }
+});
